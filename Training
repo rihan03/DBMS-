@@ -1,0 +1,1670 @@
+Creating new database named "Training" 
+
+create database Training ;
+
+Creating new table emp
+
+CREATE TABLE emp (
+    empno INT,
+    ename VARCHAR(50),
+    job VARCHAR(50),
+    mgr INT,
+    hiredate DATE,
+    sal DECIMAL(10,2),
+    comm DECIMAL(10,2),
+    deptno INT
+);
+
+Inserting values into the created table 
+
+INSERT INTO emp VALUES
+(7369,'SMITH','CLERK',7902,'17-12-1980',800,NULL,20),
+(7499,'ALLEN','SALESMAN',7698,'20-02-1981',1600,300,30),
+(7521,'WARD','SALESMAN',7698,'22-02-1981',1250,500,30),
+(7566,'JONES','MANAGER',7839,'02-04-1981',2975,NULL,20),
+(7654,'MARTIN','SALESMAN',7698,'28-09-1981',1250,1400,30),
+(7698,'BLAKE','MANAGER',7839,'01-05-1981',2850,NULL,30),
+(7782,'CLARK','MANAGER',7839,'09-06-1981',2450,NULL,10),
+(7788,'SCOTT','ANALYST',7566,'19-04-1987',3000,NULL,20),
+(7839,'KING','PRESIDENT',NULL,'17-11-1981',5000,NULL,10),
+(7844,'TURNER','SALESMAN',7698,'08-09-1981',1500,0,30),
+(7876,'ADAMS','CLERK',7788,'23-05-1987',1100,NULL,20),
+(7900,'JAMES','CLERK',7698,'03-12-1981',950,NULL,30),
+(7902,'FORD','ANALYST',7566,'03-12-1981',3000,NULL,20),
+(7934,'MILLER','CLERK',7782,'23-01-1982',1300,NULL,10);
+
+select * from emp ;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+
+Write SQL statements for the following 
+
+01. To find all managers with salary >1500
+
+select * from emp where job = 'manager' and sal > 1500 ;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7782 | CLARK | MANAGER | 7839 | 1981-06-09 | 2450.00 | NULL |     10 |
++-------+-------+---------+------+------------+---------+------+--------+
+
+02. List all employees with sal >1200 and < 2000
+
+select * from emp where sal > 1200 and sal < 2000 ;
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7934 | MILLER | CLERK    | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+----------+------+------------+---------+---------+--------+
+
+03. List all employees with sal is 1600 or sal is 800 or sal is 1900
+
+select * from emp where sal = 1600 or sal = 800 or sal = 1900 ;
+select * from emp where sal in (1600,800,1900) ;
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 |  800.00 |   NULL |     20 |
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
++-------+-------+----------+------+------------+---------+--------+--------+
+
+04. List all employees with R at second last position in name
+
+select * from emp where ename like '%r_' ;
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7521 | WARD  | SALESMAN | 7698 | 1981-02-22 | 1250.00 | 500.00 |     30 |
+|  7782 | CLARK | MANAGER  | 7839 | 1981-06-09 | 2450.00 |   NULL |     10 |
+|  7902 | FORD  | ANALYST  | 7566 | 1981-12-03 | 3000.00 |   NULL |     20 |
++-------+-------+----------+------+------------+---------+--------+--------+
+
+05. List all employees with name starts with A and ends with N
+
+select * from emp where ename like 'a%n' ;
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
++-------+-------+----------+------+------------+---------+--------+--------+
+
+06. List all employees with salary > 1250 and department number = 30.
+
+select * from emp where sal > 1250 and deptno = 30 ;
++-------+--------+----------+------+------------+---------+--------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+--------+----------+------+------------+---------+--------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |   NULL |     30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |   0.00 |     30 |
++-------+--------+----------+------+------------+---------+--------+--------+
+
+07. List all employees with salary >= 1250 and salary <= 3000.
+
+select * from emp where sal >=1250 and sal <= 3000 ;
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER  | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK    | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+----------+------+------------+---------+---------+--------+
+
+08. List all employees with salary > 1250 and salary < 3000.
+
+select * from emp where sal >1250 and sal < 3000 ;
++-------+--------+----------+------+------------+---------+--------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+--------+----------+------+------------+---------+--------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 2975.00 |   NULL |     20 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |   NULL |     30 |
+|  7782 | CLARK  | MANAGER  | 7839 | 1981-06-09 | 2450.00 |   NULL |     10 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |   0.00 |     30 |
+|  7934 | MILLER | CLERK    | 7782 | 1982-01-23 | 1300.00 |   NULL |     10 |
++-------+--------+----------+------+------------+---------+--------+--------+
+
+09. List all employees with salary either equal to 3000, 1250, or 2500.
+
+select * from emp where sal in (3000,1250,2500) ;
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
++-------+--------+----------+------+------------+---------+---------+--------+
+
+10. List all employees with name = SMITH.
+
+select * from emp where ename = 'smith' ;
++-------+-------+-------+------+------------+--------+------+--------+
+| empno | ename | job   | mgr  | hiredate   | sal    | comm | deptno |
++-------+-------+-------+------+------------+--------+------+--------+
+|  7369 | SMITH | CLERK | 7902 | 1980-12-17 | 800.00 | NULL |     20 |
++-------+-------+-------+------+------------+--------+------+--------+
+
+11. List all employees with name starting with S.
+
+select * from emp where ename like 's%' ;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7369 | SMITH | CLERK   | 7902 | 1980-12-17 |  800.00 | NULL |     20 |
+|  7788 | SCOTT | ANALYST | 7566 | 1987-04-19 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+
+12. List all employees with name ending with S.
+
+select * from emp where ename like '%s' ;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7876 | ADAMS | CLERK   | 7788 | 1987-05-23 | 1100.00 | NULL |     20 |
+|  7900 | JAMES | CLERK   | 7698 | 1981-12-03 |  950.00 | NULL |     30 |
++-------+-------+---------+------+------------+---------+------+--------+
+
+13. List all employees with I at the 2nd position in their name.
+
+select * from emp where ename like '_i%' ;
++-------+--------+-----------+------+------------+---------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm | deptno |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+
+14. List all employees with name starting with A, ending with N, and having L somewhere in between.
+
+select * from emp where ename like 'a%l%n' ;
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
++-------+-------+----------+------+------------+---------+--------+--------+
+
+15. List all employees with name starting with A, having B at the 3rd position, and P at the 2nd-last position.
+
+select * from emp where ename like 'a_b%p_' ;
+Empty set 
+
+16. List all employees with name starting with either A, S, or W.
+
+select * from emp where ename like 'a%' or ename like 's%' or ename like 'w%' ;
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 |  800.00 |   NULL |     20 |
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
+|  7521 | WARD  | SALESMAN | 7698 | 1981-02-22 | 1250.00 | 500.00 |     30 |
+|  7788 | SCOTT | ANALYST  | 7566 | 1987-04-19 | 3000.00 |   NULL |     20 |
+|  7876 | ADAMS | CLERK    | 7788 | 1987-05-23 | 1100.00 |   NULL |     20 |
++-------+-------+----------+------+------------+---------+--------+--------+
+
+17. Find the maximum salary and minimum salary for each job.
+
+select job, max(sal) as maximum, min(sal) as minimum from emp group by job ;
++-----------+---------+---------+
+| job       | maximum | minimum |
++-----------+---------+---------+
+| CLERK     | 1300.00 |  800.00 |
+| SALESMAN  | 1600.00 | 1250.00 |
+| MANAGER   | 2975.00 | 2450.00 |
+| ANALYST   | 3000.00 | 3000.00 |
+| PRESIDENT | 5000.00 | 5000.00 |
++-----------+---------+---------+
+
+18. Find how many employees have not received commission.
+
+select count(*) as non_comm_emp from emp where comm is null ;
++--------------+
+| non_comm_emp |
++--------------+
+|           10 |
++--------------+
+
+19. Find the sum of salary of all employees working in department number 10.
+
+select sum(sal) as sum from emp where deptno = '10' ;
++---------+
+| sum     |
++---------+
+| 8750.00 |
++---------+
+
+20. Find the maximum salary and average salary for each job in every department.
+
+select job, deptno , max(sal) as max, avg(sal) as avg from emp group by job, deptno ;
++-----------+--------+---------+-------------+
+| job       | deptno | max     | avg         |
++-----------+--------+---------+-------------+
+| CLERK     |     20 | 1100.00 |  950.000000 |
+| SALESMAN  |     30 | 1600.00 | 1400.000000 |
+| MANAGER   |     20 | 2975.00 | 2975.000000 |
+| MANAGER   |     30 | 2850.00 | 2850.000000 |
+| MANAGER   |     10 | 2450.00 | 2450.000000 |
+| ANALYST   |     20 | 3000.00 | 3000.000000 |
+| PRESIDENT |     10 | 5000.00 | 5000.000000 |
+| CLERK     |     30 |  950.00 |  950.000000 |
+| CLERK     |     10 | 1300.00 | 1300.000000 |
++-----------+--------+---------+-------------+
+
+21. Find the maximum salary for every department where department number is > 15 and arrange the data in department number order.
+
+select deptno, max(sal) as max from emp where deptno > 15 group by deptno order by deptno ;
++--------+---------+
+| deptno | max     |
++--------+---------+
+|     20 | 3000.00 |
+|     30 | 2850.00 |
++--------+---------+
+
+22. Find the sum of salary for every department where the total salary is > 3000.
+
+select deptno, sum(sal) as sum from emp group by deptno having sum(sal) > 3000 ;
++--------+----------+
+| deptno | sum      |
++--------+----------+
+|     20 | 10875.00 |
+|     30 |  9400.00 |
+|     10 |  8750.00 |
++--------+----------+
+
+23. List all departments which have a minimum of 5 employees.
+
+select deptno, count(*) as emp_count from emp group by deptno having count(*) >= 5 ;
++--------+-----------+
+| deptno | emp_count |
++--------+-----------+
+|     20 |         5 |
+|     30 |         6 |
++--------+-----------+
+
+24. Count how many employees earn a salary greater than 2000 in each job.
+
+select job, count(*) as emp_count from emp where sal > 2000 group by job ;
++-----------+-----------+
+| job       | emp_count |
++-----------+-----------+
+| MANAGER   |         3 |
+| ANALYST   |         2 |
+| PRESIDENT |         1 |
++-----------+-----------+
+
+25. List all employee names and jobs in lowercase letters.
+
+select lower(ename) as name, lower(job) as job from emp ;
++--------+-----------+
+| name   | job       |
++--------+-----------+
+| smith  | clerk     |
+| allen  | salesman  |
+| ward   | salesman  |
+| jones  | manager   |
+| martin | salesman  |
+| blake  | manager   |
+| clark  | manager   |
+| scott  | analyst   |
+| king   | president |
+| turner | salesman  |
+| adams  | clerk     |
+| james  | clerk     |
+| ford   | analyst   |
+| miller | clerk     |
++--------+-----------+
+
+26. List all employee names and jobs such that the length of the name is 15. If the name is smaller than 15 characters, add spaces to the left.
+
+select lpad(ename,15,' ') as emp_name from emp ;
++-----------------+
+| emp_name        |
++-----------------+
+|           SMITH |
+|           ALLEN |
+|            WARD |
+|           JONES |
+|          MARTIN |
+|           BLAKE |
+|           CLARK |
+|           SCOTT |
+|            KING |
+|          TURNER |
+|           ADAMS |
+|           JAMES |
+|            FORD |
+|          MILLER |
++-----------------+
+
+27. Display minimum salary, maximum salary, and average salary for all employees working under the same manager.
+
+select mgr, min(sal) as min,max(sal) as max, avg(sal) as avg from emp group by mgr ;
++------+---------+---------+-------------+
+| mgr  | min     | max     | avg         |
++------+---------+---------+-------------+
+| 7902 |  800.00 |  800.00 |  800.000000 |
+| 7698 |  950.00 | 1600.00 | 1310.000000 |
+| 7839 | 2450.00 | 2975.00 | 2758.333333 |
+| 7566 | 3000.00 | 3000.00 | 3000.000000 |
+| NULL | 5000.00 | 5000.00 | 5000.000000 |
+| 7788 | 1100.00 | 1100.00 | 1100.000000 |
+| 7782 | 1300.00 | 1300.00 | 1300.000000 |
++------+---------+---------+-------------+
+
+28. Find the sum of total earnings (SAL + COMM) and average of (SAL + COMM) for all employees who earn salary > 2000 and work in either department number 10 or 20.
+
+select sum(sal + coalesce(comm,0)) as total_sal, avg(sal + coalesce(comm,0)) as total_avg from emp where sal > 2000 and deptno in (10,20) ;
++-----------+-------------+
+| total_sal | total_avg   |
++-----------+-------------+
+|  16425.00 | 3285.000000 |
++-----------+-------------+
+
+29. List all employees who joined in August 1980 and whose salary is > 1500 and < 2500.
+
+select * from emp where month(hiredate) = 8 and year(hiredate) = 1980 and sal > 1500 and sal < 2500 ;
+Empty set 
+
+30. List all employees who joined in either August, May, or December.
+
+select * from emp where month(hiredate) in (8,5,12) ;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7369 | SMITH | CLERK   | 7902 | 1980-12-17 |  800.00 | NULL |     20 |
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7876 | ADAMS | CLERK   | 7788 | 1987-05-23 | 1100.00 | NULL |     20 |
+|  7900 | JAMES | CLERK   | 7698 | 1981-12-03 |  950.00 | NULL |     30 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+
+31. Display employee name and hire date in DD/MM/YY format for all employees whose job is CLERK and who receive some commission.
+
+select ename, date_format(hiredate,'%d%m%y') as hiredate from emp where job = 'clerk' and comm is not null ;
+Empty set
+
+32. List empcode, empno, name, and job for each employee.
+Note: empcode should contain 3 to 5 characters from the employee name and the last 2 characters of the job.
+
+select concat(left(ename,3) ,right(job,2)) as emp_code , empno, ename as name, job from emp ;
++----------+-------+--------+-----------+
+| emp_code | empno | name   | job       |
++----------+-------+--------+-----------+
+| SMIRK    |  7369 | SMITH  | CLERK     |
+| ALLAN    |  7499 | ALLEN  | SALESMAN  |
+| WARAN    |  7521 | WARD   | SALESMAN  |
+| JONER    |  7566 | JONES  | MANAGER   |
+| MARAN    |  7654 | MARTIN | SALESMAN  |
+| BLAER    |  7698 | BLAKE  | MANAGER   |
+| CLAER    |  7782 | CLARK  | MANAGER   |
+| SCOST    |  7788 | SCOTT  | ANALYST   |
+| KINNT    |  7839 | KING   | PRESIDENT |
+| TURAN    |  7844 | TURNER | SALESMAN  |
+| ADARK    |  7876 | ADAMS  | CLERK     |
+| JAMRK    |  7900 | JAMES  | CLERK     |
+| FORST    |  7902 | FORD   | ANALYST   |
+| MILRK    |  7934 | MILLER | CLERK     |
++----------+-------+--------+-----------+
+
+33. Display the commission with a thousand separator and $ symbol. If commission is NULL, display it as 0, for all employees whose name starts with A and ends with N.
+
+select ename, concat('$',format(coalesce(comm,0), 0)) as commission from emp where ename like 'a%n' ;
++-------+------------+
+| ename | commission |
++-------+------------+
+| ALLEN | $300       |
++-------+------------+
+
+34. Display empid,name,sal,comm,remark Remark should base on following conditions
+comm >= 600 "excellent Keep it up"
+if it < 600 or not null "good"
+otherwise "Need improvement"
+
+select empnno as emp_id,
+       ename as name,
+       sal,
+       comm,
+       case 
+            when comm >= 600 then 'excellent keep it up'
+            when comm < 600 then 'good'
+            else 'need improvement'
+       end as remark 
+from emp ;
+
++--------+--------+---------+---------+----------------------+
+| emp_id | name   | sal     | comm    | remark               |
++--------+--------+---------+---------+----------------------+
+|   7369 | SMITH  |  800.00 |    NULL | need improvement     |
+|   7499 | ALLEN  | 1600.00 |  300.00 | good                 |
+|   7521 | WARD   | 1250.00 |  500.00 | good                 |
+|   7566 | JONES  | 2975.00 |    NULL | need improvement     |
+|   7654 | MARTIN | 1250.00 | 1400.00 | excellent keep it up |
+|   7698 | BLAKE  | 2850.00 |    NULL | need improvement     |
+|   7782 | CLARK  | 2450.00 |    NULL | need improvement     |
+|   7788 | SCOTT  | 3000.00 |    NULL | need improvement     |
+|   7839 | KING   | 5000.00 |    NULL | need improvement     |
+|   7844 | TURNER | 1500.00 |    0.00 | good                 |
+|   7876 | ADAMS  | 1100.00 |    NULL | need improvement     |
+|   7900 | JAMES  |  950.00 |    NULL | need improvement     |
+|   7902 | FORD   | 3000.00 |    NULL | need improvement     |
+|   7934 | MILLER | 1300.00 |    NULL | need improvement     |
++--------+--------+---------+---------+----------------------+
+
+35. Display empid, name, deptno and department name by using following conditions.
+dept 10 then "Hr"
+if 20 then "Admin"
+if 30 then "accounts"
+otherwise purchase
+
+select empno as emp_id,
+       ename as name,
+       deptno,
+       case 
+            when deptno = 10 then 'HR'
+            when deptno = 20 then 'Admin'
+            when deptno = 30 then 'Accounts'
+            else 'Purchase'
+       end as department_name 
+from emp ;
+
++--------+--------+--------+-----------------+
+| emp_id | name   | deptno | department_name |
++--------+--------+--------+-----------------+
+|   7369 | SMITH  |     20 | Admin           |
+|   7499 | ALLEN  |     30 | Accounts        |
+|   7521 | WARD   |     30 | Accounts        |
+|   7566 | JONES  |     20 | Admin           |
+|   7654 | MARTIN |     30 | Accounts        |
+|   7698 | BLAKE  |     30 | Accounts        |
+|   7782 | CLARK  |     10 | HR              |
+|   7788 | SCOTT  |     20 | Admin           |
+|   7839 | KING   |     10 | HR              |
+|   7844 | TURNER |     30 | Accounts        |
+|   7876 | ADAMS  |     20 | Admin           |
+|   7900 | JAMES  |     30 | Accounts        |
+|   7902 | FORD   |     20 | Admin           |
+|   7934 | MILLER |     10 | HR              |
++--------+--------+--------+-----------------+
+
+36. Create table mydept_DBDA.
+
+create table mydept_DBDA (
+deptid int primary key,
+dname varchar(20) not null unique,
+dloc varchar(20) );
+
+insert into mydept_DBDA values(30,'Purchase','Mumbai');
+
+select * from mydept_DBDA ;
++--------+----------+--------+
+| deptid | dname    | dloc   |
++--------+----------+--------+
+|     30 | Purchase | Mumbai |
++--------+----------+--------+
+
+37. Create table myemmployee.
+
+create table myemployee (
+empno int primary key,
+fname varchar(15) not null,
+mname varchar(15),
+Iname varchar(15) not null,
+sal decimal(9,2) check(sal >=1000),
+doj date,
+passportnum varchar(15) unique,
+deptno int,
+constraint fk_deptno 
+      foreign key (deptno) 
+      references mydept_DBDA(deptid) on delete cascade 
+) ;
+
+
+select * from myemployee ;
+Empty set 
+
+38. Create Student table.
+
+create table student (
+     sid int primary key,
+     sname varchar(50)
+) ;
+
+insert into student values
+    (1, 'rahul'),
+    (2,'amit'),
+    (3,'john');
+
+select * from student ;
++-----+-------+
+| sid | sname |
++-----+-------+
+|   1 | rahul |
+|   2 | amit  |
+|   3 | john  |
++-----+-------+
+
+39. Create course table.
+
+create table course (
+     cid int primary key,
+     cname varchar(50)
+) ;
+
+insert into courses values
+    (1, 'DBMS'),
+    (2,'Python'),
+    (3,'Mathematics');
+
+select * from course ;
++-----+-------------+
+| cid | cname       |
++-----+-------------+
+|   1 | DBMS        |
+|   2 | Python      |
+|   3 | Mathematics |
++-----+-------------+
+
+40. Create marks table.
+
+create table marks (
+    student_id int,
+    course_id int,
+    marks int,
+
+    constraint pk_marks 
+    primary key(student_id,course_id),
+
+    constraint fk_sid
+    foreign key (student_id)
+    references student(sid),
+
+    constraint fk_cid
+    foreign key (course_id)
+    references course(cid)
+);
+
+insert into marks(student_id,course_id,marks) values 
+(1, 1, 99),
+(1, 2, 98),
+(2, 1, 95),
+(2, 3, 97);
+
+select * from marks ;
++------------+-----------+-------+
+| student_id | course_id | marks |
++------------+-----------+-------+
+|          1 |         1 |    99 |
+|          1 |         2 |    98 |
+|          2 |         1 |    95 |
+|          2 |         3 |    97 |
++------------+-----------+-------+
+
+41. Create empty table fake_emp with same table structure as emp table.
+
+create table fake_emp as 
+(select * from emp where 1 = 2 ) ;
+
+42. Create table dept.
+
+create table dept (
+    deptno int primary key,
+    dname varchar(50) ,
+    loc varchar(50) );
+
+insert into dept values
+    (10, 'Accounting', 'New York'),
+    (20, 'Research', 'Dallas'),
+    (30, 'Sales', 'Chicago'),
+    (40, 'Operation', 'Boston'),
+    (50, 'Management', 'California');
+
+select * from dept ;
++--------+------------+------------+
+| deptno | dname      | loc        |
++--------+------------+------------+
+|     10 | Accounting | New York   |
+|     20 | Research   | Dallas     |
+|     30 | Sales      | Chicago    |
+|     40 | Operation  | Boston     |
+|     50 | Management | California |
++--------+------------+------------+
+
+43. Create table salgrade.
+
+create table salgrade (
+    grade int primary key,
+    low_sal decimal(10,2), 
+    high_sal decimal(10,2) );
+
+insert into salgrade values
+(1, 700, 1200),
+(2, 1201, 1400),
+(3, 1401, 2000),
+(4, 2001, 3000),
+(5, 3001, 9999);
+
+select * from salgrade ;
++-------+---------+----------+
+| grade | low_sal | high_sal |
++-------+---------+----------+
+|     1 |  700.00 |  1200.00 |
+|     2 | 1201.00 |  1400.00 |
+|     3 | 1401.00 |  2000.00 |
+|     4 | 2001.00 |  3000.00 |
+|     5 | 3001.00 |  9999.00 |
++-------+---------+----------+
+
+44. Solve following using alter table add primary key constraint on emp,dept,salgrade
+emp ---- > empno
+dept --- > deptno
+salgrade --- > grade
+add foreign key constarint in emp
+deptno --- >> dept(deptno)
+add new column in emp table netsal with constraint default 1000
+
+alter table emp add constraint pk_emp primary key(empno) ;
+alter table dept add constraint pk_dept primary key (deptno) ;
+alter table salgrade add constraint pk_salgrade primary key (grade) ;
+alter table emp add constraint fk_emp_dept foreign key (deptno) references dept(deptno) ;
+alter table emp add column netsal decimal(10,2) default 1000 ;
+
+desc emp ;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| empno    | int           | NO   | PRI | NULL    |       |
+| ename    | varchar(50)   | YES  |     | NULL    |       |
+| job      | varchar(50)   | YES  |     | NULL    |       |
+| mgr      | int           | YES  |     | NULL    |       |
+| hiredate | date          | YES  |     | NULL    |       |
+| sal      | decimal(10,2) | YES  |     | NULL    |       |
+| comm     | decimal(10,2) | YES  |     | NULL    |       |
+| deptno   | int           | YES  | MUL | NULL    |       |
+| netsal   | decimal(10,2) | YES  |     | 1000.00 |       |
++----------+---------------+------+-----+---------+-------+
+
+show create table emp ;
+CREATE TABLE `emp` (
+  `empno` int NOT NULL,
+  `ename` varchar(50) DEFAULT NULL,
+  `job` varchar(50) DEFAULT NULL,
+  `mgr` int DEFAULT NULL,
+  `hiredate` date DEFAULT NULL,
+  `sal` decimal(10,2) DEFAULT NULL,
+  `comm` decimal(10,2) DEFAULT NULL,
+  `deptno` int DEFAULT NULL,
+  `netsal` decimal(10,2) DEFAULT '1000.00',
+  PRIMARY KEY (`empno`),
+  KEY `fk_emp_dept` (`deptno`),
+  CONSTRAINT `fk_emp_dept` FOREIGN KEY (`deptno`) REFERENCES `dept` (`deptno`))
+
+44. Update the salary of each employee by increasing it by 15%. Also, change the job to MANAGER and MGR to 7777 for all employees in department number 10.
+
+update emp set sal = sal * 1.15, job = 'manager', mgr = 7777 where deptno = 10 ;
+
+select * from emp ;
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno | netsal  |
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+|  7369 | SMITH  | CLERK    | 7902 | 1980-12-17 |  800.00 |    NULL |     20 | 1000.00 |
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 | 1000.00 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 | 1000.00 |
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 | 1000.00 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 | 1000.00 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 | 1000.00 |
+|  7782 | CLARK  | manager  | 7777 | 1981-06-09 | 2817.50 |    NULL |     10 | 1000.00 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7839 | KING   | manager  | 7777 | 1981-11-17 | 5750.00 |    NULL |     10 | 1000.00 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 | 1000.00 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 | 1000.00 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950.00 |    NULL |     30 | 1000.00 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7934 | MILLER | manager  | 7777 | 1982-01-23 | 1495.00 |    NULL |     10 | 1000.00 |
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+
+45. Change the job of SMITH to SENIOR CLERK.
+
+update emp set job = 'senoir clerk' where ename = 'smith' ;
+
+select * from emp where ename = 'smith' ;
++-------+-------+--------------+------+------------+--------+------+--------+---------+
+| empno | ename | job          | mgr  | hiredate   | sal    | comm | deptno | netsal  |
++-------+-------+--------------+------+------------+--------+------+--------+---------+
+|  7369 | SMITH | senoir clerk | 7902 | 1980-12-17 | 800.00 | NULL |     20 | 1000.00 |
++-------+-------+--------------+------+------------+--------+------+--------+---------+
+
+46. Increase the salary of all employees by 15% if they are earning some commission.
+
+update emp set sal = sal * 1.15 where comm is not null ;
+
+select * from emp ;
++-------+--------+--------------+------+------------+---------+---------+--------+---------+
+| empno | ename  | job          | mgr  | hiredate   | sal     | comm    | deptno | netsal  |
++-------+--------+--------------+------+------------+---------+---------+--------+---------+
+|  7369 | SMITH  | senoir clerk | 7902 | 1980-12-17 |  800.00 |    NULL |     20 | 1000.00 |
+|  7499 | ALLEN  | SALESMAN     | 7698 | 1981-02-20 | 1840.00 |  300.00 |     30 | 1000.00 |
+|  7521 | WARD   | SALESMAN     | 7698 | 1981-02-22 | 1437.50 |  500.00 |     30 | 1000.00 |
+|  7566 | JONES  | MANAGER      | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 | 1000.00 |
+|  7654 | MARTIN | SALESMAN     | 7698 | 1981-09-28 | 1437.50 | 1400.00 |     30 | 1000.00 |
+|  7698 | BLAKE  | MANAGER      | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 | 1000.00 |
+|  7782 | CLARK  | manager      | 7777 | 1981-06-09 | 2817.50 |    NULL |     10 | 1000.00 |
+|  7788 | SCOTT  | ANALYST      | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7839 | KING   | manager      | 7777 | 1981-11-17 | 5750.00 |    NULL |     10 | 1000.00 |
+|  7844 | TURNER | SALESMAN     | 7698 | 1981-09-08 | 1725.00 |    0.00 |     30 | 1000.00 |
+|  7876 | ADAMS  | CLERK        | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 | 1000.00 |
+|  7900 | JAMES  | CLERK        | 7698 | 1981-12-03 |  950.00 |    NULL |     30 | 1000.00 |
+|  7902 | FORD   | ANALYST      | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7934 | MILLER | manager      | 7777 | 1982-01-23 | 1495.00 |    NULL |     10 | 1000.00 |
++-------+--------+--------------+------+------------+---------+---------+--------+---------+
+
+47. List all employees with salary greater than SMITH's salary.
+
+select * from emp where sal > (
+select sal from emp where ename = 'smith' ) ;
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno | netsal  |
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1840.00 |  300.00 |     30 | 1000.00 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1437.50 |  500.00 |     30 | 1000.00 |
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 | 1000.00 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1437.50 | 1400.00 |     30 | 1000.00 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 | 1000.00 |
+|  7782 | CLARK  | manager  | 7777 | 1981-06-09 | 2817.50 |    NULL |     10 | 1000.00 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7839 | KING   | manager  | 7777 | 1981-11-17 | 5750.00 |    NULL |     10 | 1000.00 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1725.00 |    0.00 |     30 | 1000.00 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 | 1000.00 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950.00 |    NULL |     30 | 1000.00 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7934 | MILLER | manager  | 7777 | 1982-01-23 | 1495.00 |    NULL |     10 | 1000.00 |
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+
+48. List all employees who are working in SMITH's department.
+
+select * from emp where deptno = (
+select deptno from emp where ename = 'smith' ) ;
++-------+-------+--------------+------+------------+---------+------+--------+---------+
+| empno | ename | job          | mgr  | hiredate   | sal     | comm | deptno | netsal  |
++-------+-------+--------------+------+------------+---------+------+--------+---------+
+|  7369 | SMITH | senoir clerk | 7902 | 1980-12-17 |  800.00 | NULL |     20 | 1000.00 |
+|  7566 | JONES | MANAGER      | 7839 | 1981-04-02 | 2975.00 | NULL |     20 | 1000.00 |
+|  7788 | SCOTT | ANALYST      | 7566 | 1987-04-19 | 3000.00 | NULL |     20 | 1000.00 |
+|  7876 | ADAMS | CLERK        | 7788 | 1987-05-23 | 1100.00 | NULL |     20 | 1000.00 |
+|  7902 | FORD  | ANALYST      | 7566 | 1981-12-03 | 3000.00 | NULL |     20 | 1000.00 |
++-------+-------+--------------+------+------------+---------+------+--------+---------+
+
+49. List all employees with salary less than RAJAN's salary and salary greater than REVATI's salary.
+
+select * from emp where 
+sal < ( select sal from emp where ename = 'rajan') 
+and sal > (select sal from emp where ename = 'revati');
+Empty set (
+
+50. Delete all employees working in ALAN's department.
+
+delete from emp 
+where deptno = (
+  select deptno 
+    from (
+      select deptno 
+      from emp 
+      where ename = 'alan')
+  as temp
+) ;
+
+select * from emp ;
++-------+--------+--------------+------+------------+---------+---------+--------+---------+
+| empno | ename  | job          | mgr  | hiredate   | sal     | comm    | deptno | netsal  |
++-------+--------+--------------+------+------------+---------+---------+--------+---------+
+|  7369 | SMITH  | senoir clerk | 7902 | 1980-12-17 |  800.00 |    NULL |     20 | 1000.00 |
+|  7499 | ALLEN  | SALESMAN     | 7698 | 1981-02-20 | 1840.00 |  300.00 |     30 | 1000.00 |
+|  7521 | WARD   | SALESMAN     | 7698 | 1981-02-22 | 1437.50 |  500.00 |     30 | 1000.00 |
+|  7566 | JONES  | MANAGER      | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 | 1000.00 |
+|  7654 | MARTIN | SALESMAN     | 7698 | 1981-09-28 | 1437.50 | 1400.00 |     30 | 1000.00 |
+|  7698 | BLAKE  | MANAGER      | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 | 1000.00 |
+|  7782 | CLARK  | manager      | 7777 | 1981-06-09 | 2817.50 |    NULL |     10 | 1000.00 |
+|  7788 | SCOTT  | ANALYST      | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7839 | KING   | manager      | 7777 | 1981-11-17 | 5750.00 |    NULL |     10 | 1000.00 |
+|  7844 | TURNER | SALESMAN     | 7698 | 1981-09-08 | 1725.00 |    0.00 |     30 | 1000.00 |
+|  7876 | ADAMS  | CLERK        | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 | 1000.00 |
+|  7900 | JAMES  | CLERK        | 7698 | 1981-12-03 |  950.00 |    NULL |     30 | 1000.00 |
+|  7902 | FORD   | ANALYST      | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7934 | MILLER | manager      | 7777 | 1982-01-23 | 1495.00 |    NULL |     10 | 1000.00 |
++-------+--
+
+51. Change the salary of ALAN to the salary of MILLER.
+
+update emp
+set sal = (
+     select sal
+     from (
+          select sal
+          from emp
+          where ename = 'miller'
+     ) as temp
+ )
+where ename = 'alan' ;
+
+select * from emp where ename = 'miller' ;
++-------+--------+---------+------+------------+---------+------+--------+---------+
+| empno | ename  | job     | mgr  | hiredate   | sal     | comm | deptno | netsal  |
++-------+--------+---------+------+------------+---------+------+--------+---------+
+|  7934 | MILLER | manager | 7777 | 1982-01-23 | 1495.00 | NULL |     10 | 1000.00 |
++-------+--------+---------+------+------------+---------+------+--------+---------+
+
+52. Change the salary of all employees working in WALL's department to the salary of MILLER.
+
+update emp 
+set sal = ( 
+      select sal from ( 
+          select sal from emp where ename = 'miller' 
+      ) as temp 
+) 
+where deptno = (
+      select deptno from ( 
+          select deptno from emp where ename = 'wall' 
+      ) as temp2
+);
+
+select ename , deptno, sal from emp 
+where ename in ('miller','wall') or 
+deptno = ( select deptno from emp where ename = 'wall') ;
++--------+--------+---------+
+| ename  | deptno | sal     |
++--------+--------+---------+
+| MILLER |     10 | 1495.00 |
++--------+--------+---------+
+
+53. List all employees with salary greater than either SMITH's salary or ALAN's salary.
+
+select * from emp where sal > ( select min(sal) from emp where ename in ('smith','alan') ) ;
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno | netsal  |
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1840.00 |  300.00 |     30 | 1000.00 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1437.50 |  500.00 |     30 | 1000.00 |
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 | 1000.00 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1437.50 | 1400.00 |     30 | 1000.00 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 | 1000.00 |
+|  7782 | CLARK  | manager  | 7777 | 1981-06-09 | 2817.50 |    NULL |     10 | 1000.00 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1987-04-19 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7839 | KING   | manager  | 7777 | 1981-11-17 | 5750.00 |    NULL |     10 | 1000.00 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1725.00 |    0.00 |     30 | 1000.00 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 | 1000.00 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950.00 |    NULL |     30 | 1000.00 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 | 1000.00 |
+|  7934 | MILLER | manager  | 7777 | 1982-01-23 | 1495.00 |    NULL |     10 | 1000.00 |
++-------+--------+----------+------+------------+---------+---------+--------+---------+
+
+54. List all employees who earn more than the average salary of department 
+number 10.
+
+select * from emp where sal > ( select avg(sal) from emp where deptno = 10 ) ;
++-------+-------+---------+------+------------+---------+------+--------+---------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno | netsal  |
++-------+-------+---------+------+------------+---------+------+--------+---------+
+|  7839 | KING  | manager | 7777 | 1981-11-17 | 5750.00 | NULL |     10 | 1000.00 |
++-------+-------+---------+------+------------+---------+------+--------+---------+
+
+55. List all employees who earn more than the average salary of ALAN's department.
+
+select * from emp 
+where sal > ( 
+  select avg(sal) from emp 
+  where deptno = ( 
+      select deptno from emp 
+      where ename = 'alan')
+) ;
+Empty set 
+
+56. List all employees who are working in the PURCHASE department.
+
+select e.* 
+from emp e 
+join dept d 
+on e.deptno = d.deptno 
+where d.dname = 'purchase' ;
+Empty set 
+
+57. List all employees who earn more than the average salary of their own department.
+
+select e.* 
+from emp e 
+where e.sal > ( 
+  select avg(e2.sal) 
+  from emp e2 
+  where e2.deptno = e.deptno 
+) ;
++-------+--------+----------+------+------------+---------+--------+--------+---------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm   | deptno | netsal  |
++-------+--------+----------+------+------------+---------+--------+--------+---------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1840.00 | 300.00 |     30 | 1000.00 |
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 2975.00 |   NULL |     20 | 1000.00 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |   NULL |     30 | 1000.00 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1987-04-19 | 3000.00 |   NULL |     20 | 1000.00 |
+|  7839 | KING   | manager  | 7777 | 1981-11-17 | 5750.00 |   NULL |     10 | 1000.00 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1725.00 |   0.00 |     30 | 1000.00 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3000.00 |   NULL |     20 | 1000.00 |
++-------+--------+----------+------+------------+---------+--------+--------+---------+
+
+58. List all employees whose salary is less than their manager's salary.
+
+select e.* 
+from emp e 
+join emp m 
+on e.mgr = m.empno 
+where e.sal <m.sal ;
++-------+--------+--------------+------+------------+---------+---------+--------+---------+
+| empno | ename  | job          | mgr  | hiredate   | sal     | comm    | deptno | netsal  |
++-------+--------+--------------+------+------------+---------+---------+--------+---------+
+|  7369 | SMITH  | senoir clerk | 7902 | 1980-12-17 |  800.00 |    NULL |     20 | 1000.00 |
+|  7499 | ALLEN  | SALESMAN     | 7698 | 1981-02-20 | 1840.00 |  300.00 |     30 | 1000.00 |
+|  7521 | WARD   | SALESMAN     | 7698 | 1981-02-22 | 1437.50 |  500.00 |     30 | 1000.00 |
+|  7566 | JONES  | MANAGER      | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 | 1000.00 |
+|  7654 | MARTIN | SALESMAN     | 7698 | 1981-09-28 | 1437.50 | 1400.00 |     30 | 1000.00 |
+|  7698 | BLAKE  | MANAGER      | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 | 1000.00 |
+|  7844 | TURNER | SALESMAN     | 7698 | 1981-09-08 | 1725.00 |    0.00 |     30 | 1000.00 |
+|  7876 | ADAMS  | CLERK        | 7788 | 1987-05-23 | 1100.00 |    NULL |     20 | 1000.00 |
+|  7900 | JAMES  | CLERK        | 7698 | 1981-12-03 |  950.00 |    NULL |     30 | 1000.00 |
++-------+--------+--------------+------+------------+---------+---------+--------+---------+
+
+59. List all employees who are earning more than the average salary of their job.
+
+select e.* 
+from emp e 
+where e.sal > (
+  select avg(e2.sal) 
+  from emp e2 
+  where e2.job = e.job ) ;
++-------+--------+----------+------+------------+---------+--------+--------+---------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm   | deptno | netsal  |
++-------+--------+----------+------+------------+---------+--------+--------+---------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1840.00 | 300.00 |     30 | 1000.00 |
+|  7839 | KING   | manager  | 7777 | 1981-11-17 | 5750.00 |   NULL |     10 | 1000.00 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1725.00 |   0.00 |     30 | 1000.00 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1987-05-23 | 1100.00 |   NULL |     20 | 1000.00 |
++-------+--------+----------+------+------------+---------+--------+--------+---------+
+
+60. Display employee name and department name.
+
+select e.ename, d.dname 
+from emp e 
+join dept d 
+on e.deptno and d.deptno ;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | Management |
+| SMITH  | Operation  |
+| SMITH  | Sales      |
+| SMITH  | Research   |
+| SMITH  | Accounting |
+| ALLEN  | Management |
+| ALLEN  | Operation  |
+| ALLEN  | Sales      |
+| ALLEN  | Research   |
+| ALLEN  | Accounting |
+| WARD   | Management |
+| WARD   | Operation  |
+| WARD   | Sales      |
+| WARD   | Research   |
+| WARD   | Accounting |
+| JONES  | Management |
+| JONES  | Operation  |
+| JONES  | Sales      |
+| JONES  | Research   |
+| JONES  | Accounting |
+| MARTIN | Management |
+| MARTIN | Operation  |
+| MARTIN | Sales      |
+| MARTIN | Research   |
+| MARTIN | Accounting |
+| BLAKE  | Management |
+| BLAKE  | Operation  |
+| BLAKE  | Sales      |
+| BLAKE  | Research   |
+| BLAKE  | Accounting |
+| CLARK  | Management |
+| CLARK  | Operation  |
+| CLARK  | Sales      |
+| CLARK  | Research   |
+| CLARK  | Accounting |
+| SCOTT  | Management |
+| SCOTT  | Operation  |
+| SCOTT  | Sales      |
+| SCOTT  | Research   |
+| SCOTT  | Accounting |
+| KING   | Management |
+| KING   | Operation  |
+| KING   | Sales      |
+| KING   | Research   |
+| KING   | Accounting |
+| TURNER | Management |
+| TURNER | Operation  |
+| TURNER | Sales      |
+| TURNER | Research   |
+| TURNER | Accounting |
+| ADAMS  | Management |
+| ADAMS  | Operation  |
+| ADAMS  | Sales      |
+| ADAMS  | Research   |
+| ADAMS  | Accounting |
+| JAMES  | Management |
+| JAMES  | Operation  |
+| JAMES  | Sales      |
+| JAMES  | Research   |
+| JAMES  | Accounting |
+| FORD   | Management |
+| FORD   | Operation  |
+| FORD   | Sales      |
+| FORD   | Research   |
+| FORD   | Accounting |
+| MILLER | Management |
+| MILLER | Operation  |
+| MILLER | Sales      |
+| MILLER | Research   |
+| MILLER | Accounting |
++--------+------------+
+
+61. Display EMPNO, employee name, department name, and salary grade using the EMP, DEPT, and SALGRADE tables.
+
+select e.empno,e.ename,d.dname,s.grade 
+from emp e 
+join dept d 
+on e.deptno = d.deptno 
+join salgrade s on e.sal between s.low_sal and s.high_sal ;
++-------+--------+------------+-------+
+| empno | ename  | dname      | grade |
++-------+--------+------------+-------+
+|  7369 | SMITH  | Research   |     1 |
+|  7499 | ALLEN  | Sales      |     3 |
+|  7521 | WARD   | Sales      |     3 |
+|  7566 | JONES  | Research   |     4 |
+|  7654 | MARTIN | Sales      |     3 |
+|  7698 | BLAKE  | Sales      |     4 |
+|  7782 | CLARK  | Accounting |     4 |
+|  7788 | SCOTT  | Research   |     4 |
+|  7839 | KING   | Accounting |     5 |
+|  7844 | TURNER | Sales      |     3 |
+|  7876 | ADAMS  | Research   |     1 |
+|  7900 | JAMES  | Sales      |     1 |
+|  7902 | FORD   | Research   |     4 |
+|  7934 | MILLER | Accounting |     3 |
++-------+--------+------------+-------+
+
+62. List all employees' employee number, name, manager number, and manager name.
+
+select e.empno, e.ename, e.mgr, m.ename as manager_name 
+from emp e 
+left join emp m 
+on e.mgr = m.empno ;
++-------+--------+------+--------------+
+| empno | ename  | mgr  | manager_name |
++-------+--------+------+--------------+
+|  7369 | SMITH  | 7902 | FORD         |
+|  7499 | ALLEN  | 7698 | BLAKE        |
+|  7521 | WARD   | 7698 | BLAKE        |
+|  7566 | JONES  | 7839 | KING         |
+|  7654 | MARTIN | 7698 | BLAKE        |
+|  7698 | BLAKE  | 7839 | KING         |
+|  7782 | CLARK  | 7777 | NULL         |
+|  7788 | SCOTT  | 7566 | JONES        |
+|  7839 | KING   | 7777 | NULL         |
+|  7844 | TURNER | 7698 | BLAKE        |
+|  7876 | ADAMS  | 7788 | SCOTT        |
+|  7900 | JAMES  | 7698 | BLAKE        |
+|  7902 | FORD   | 7566 | JONES        |
+|  7934 | MILLER | 7777 | NULL         |
++-------+--------+------+--------------+
+
+63. Solve the following queries 
+
+create table salesman (
+    sid int primary key ,
+    sname varchar(50) ,
+    address varchar(100) 
+);
+
+insert into salesman values 
+(101, 'Ravi', 'Pune'),
+(102, 'Rahul', 'Mumbai'),
+(103, 'Amit', 'Pune'),
+(104, 'Suresh', 'Delhi');
+
+select * from salesman ;
++-----+--------+---------+
+| sid | sname  | address |
++-----+--------+---------+
+| 101 | Ravi   | Pune    |
+| 102 | Rahul  | Mumbai  |
+| 103 | Amit   | Pune    |
+| 104 | Suresh | Delhi   |
++-----+--------+---------+
+
+create table category (
+    cid int primary key ,
+    cname varchar(50)  ,
+    description varchar(100) 
+);
+
+insert into category values 
+(1, 'Electronics', 'Electronic products'),
+(2, 'Clothing', 'Clothing products'),
+(3, 'Furniture', 'Furniture products');
+
+select * from category ;
++-----+-------------+---------------------+
+| cid | cname       | description         |
++-----+-------------+---------------------+
+|   1 | Electronics | Electronic products |
+|   2 | Clothing    | Clothing products   |
+|   3 | Furniture   | Furniture products  |
++-----+-------------+---------------------+
+
+create table product (
+    pid int primary key ,
+    pname varchar(50) ,
+    price decimal(10,2) ,
+    qty int ,
+    cid int ,
+    sid int ,
+    foreign key (cid) references category(cid),
+    foreign key (sid) references salesman(sid)
+);
+
+insert into product values 
+(1001, 'Laptop', 55000, 10, 1, 101),
+(1002, 'Mobile', 25000, 20, 1, 102),
+(1003, 'Shirt', 1200, 50, 2, 103),
+(1004, 'Chair', 2500, 15, 3, 104),
+(1005, 'Headphones', 2000, 30, 1, 101);
+
+select * from product ;
++------+------------+----------+------+------+------+
+| pid  | pname      | price    | qty  | cid  | sid  |
++------+------------+----------+------+------+------+
+| 1001 | Laptop     | 55000.00 |   10 |    1 |  101 |
+| 1002 | Mobile     | 25000.00 |   20 |    1 |  102 |
+| 1003 | Shirt      |  1200.00 |   50 |    2 |  103 |
+| 1004 | Chair      |  2500.00 |   15 |    3 |  104 |
+| 1005 | Headphones |  2000.00 |   30 |    1 |  101 |
++------+------------+----------+------+------+------+
+
+a. List all the product name, their category name and name of the person who sold that product.
+
+select p.pname as product_name,c.cname as category_name, s.sname as salesman_name
+from product p 
+join category c 
+on p.cid = c.cid 
+join salesman s 
+on p.sid = s.sid ;
++--------------+---------------+---------------+
+| product_name | category_name | salesman_name |
++--------------+---------------+---------------+
+| Laptop       | Electronics   | Ravi          |
+| Mobile       | Electronics   | Rahul         |
+| Headphones   | Electronics   | Ravi          |
+| Shirt        | Clothing      | Amit          |
+| Chair        | Furniture     | Suresh        |
++--------------+---------------+---------------+
+
+b. List all the product name and salesman name for all the salesman who stays in Pune.
+
+select p.pname as product_name,s.sname as salesman_name
+from product p 
+join salesman s 
+on p.sid = s.sid 
+where s.address = 'pune' ;
++--------------+---------------+
+| product_name | salesman_name |
++--------------+---------------+
+| Laptop       | Ravi          |
+| Headphones   | Ravi          |
+| Shirt        | Amit          |
++--------------+---------------+
+
+c. List all the product name and category name.
+
+select p.pname as product_name, c.cname as category_name
+from product p 
+join category c 
+on p.cid = c.cid ;
++--------------+---------------+
+| product_name | category_name |
++--------------+---------------+
+| Laptop       | Electronics   |
+| Mobile       | Electronics   |
+| Headphones   | Electronics   |
+| Shirt        | Clothing      |
+| Chair        | Furniture     |
++--------------+---------------+
+
+64. Create the following table and solve the following questions 
+
+create table faculty (
+    fid int primary key ,
+    fname varchar(50) ,
+    skill1 varchar(50) ,
+    skill2 varchar(50) 
+);
+
+insert into faculty values 
+(10, 'Dr. Rahul Sharma', 'Database', 'SQL'),
+(11, 'Dr. Priya Nair', 'Python', 'Machine Learning'),
+(12, 'Prof. Arjun Rao', 'Networking', 'Cloud'),
+(13, 'Prof. Sneha Patil', 'Web Development', 'JavaScript'),
+(14, 'Dr. Amit Kumar', 'Data Science', 'Statistics');
+
+select * from faculty ;
++-----+-------------------+-----------------+------------------+
+| fid | fname             | skill1          | skill2           |
++-----+-------------------+-----------------+------------------+
+|  10 | Dr. Rahul Sharma  | Database        | SQL              |
+|  11 | Dr. Priya Nair    | Python          | Machine Learning |
+|  12 | Prof. Arjun Rao   | Networking      | Cloud            |
+|  13 | Prof. Sneha Patil | Web Development | JavaScript       |
+|  14 | Dr. Amit Kumar    | Data Science    | Statistics       |
++-----+-------------------+-----------------+------------------+
+
+create table room (
+    roomid int primary key ,
+    rname varchar(50) ,
+    rloc varchar(50) 
+);
+
+insert into room values 
+(100, 'Computer Lab 1', '1st Floor'),
+(101, 'Computer Lab 2', '1st Floor'),
+(102, 'Seminar Hall', '2nd Floor'),
+(103, 'Smart Classroom 1', '2nd Floor'),
+(104, 'Smart Classroom 2', '3rd Floor');
+
+select * from room ;
++--------+-------------------+-----------+
+| roomid | rname             | rloc      |
++--------+-------------------+-----------+
+|    100 | Computer Lab 1    | 1st Floor |
+|    101 | Computer Lab 2    | 1st Floor |
+|    102 | Seminar Hall      | 2nd Floor |
+|    103 | Smart Classroom 1 | 2nd Floor |
+|    104 | Smart Classroom 2 | 3rd Floor |
++--------+-------------------+-----------+
+
+create table courses (
+    cid int primary key ,
+    cname varchar(50) ,
+    rid int ,
+    fid int ,
+    foreign key (rid) references room(roomid) ,
+    foreign key (fid) references faculty(fid)
+);
+
+insert into courses values 
+(201, 'Database Management Systems', 100, 10),
+(202, 'Python Programming', 101, 11),
+(203, 'Computer Networks', 102, 12),
+(204, 'Web Development', NULL, 13),
+(205, 'Data Science', 104, 14),
+(206, 'Artificial Intelligence', NULL, NULL);
+
+select * from courses ;
++-----+-----------------------------+------+------+
+| cid | cname                       | rid  | fid  |
++-----+-----------------------------+------+------+
+| 201 | Database Management Systems |  100 |   10 |
+| 202 | Python Programming          |  101 |   11 |
+| 203 | Computer Networks           |  102 |   12 |
+| 204 | Web Development             | NULL |   13 |
+| 205 | Data Science                |  104 |   14 |
+| 206 | Artificial Intelligence     | NULL | NULL |
++-----+-----------------------------+------+------+
+
+a. List all courses for which no room is assigned and all rooms which are available.
+
+-> Courses without a room 
+select * 
+from courses 
+where rid is null ;
++-----+-------------------------+------+------+
+| cid | cname                   | rid  | fid  |
++-----+-------------------------+------+------+
+| 204 | Web Development         | NULL |   13 |
+| 206 | Artificial Intelligence | NULL | NULL |
++-----+-------------------------+------+------+
+
+-> Available room 
+select r.* 
+from room r 
+left join courses c 
+on r.roomid = c.rid 
+where c.rid is null ;
++--------+-------------------+-----------+
+| roomid | rname             | rloc      |
++--------+-------------------+-----------+
+|    103 | Smart Classroom 1 | 2nd Floor |
++--------+-------------------+-----------+
+
+b. List all faculties who are not allocated to any course and rooms which are not allocated to any course.
+
+-> Faculty without a course 
+select f.* 
+from faculty f 
+left join courses c 
+on f.fid = c.cid 
+where c.fid is null ;
++-----+-------------------+-----------------+------------------+
+| fid | fname             | skill1          | skill2           |
++-----+-------------------+-----------------+------------------+
+|  10 | Dr. Rahul Sharma  | Database        | SQL              |
+|  11 | Dr. Priya Nair    | Python          | Machine Learning |
+|  12 | Prof. Arjun Rao   | Networking      | Cloud            |
+|  13 | Prof. Sneha Patil | Web Development | JavaScript       |
+|  14 | Dr. Amit Kumar    | Data Science    | Statistics       |
++-----+-------------------+-----------------+------------------+
+
+-> Rooms without a course 
+select r.* 
+from room r 
+left join courses c 
+on r.roomid = c.rid 
+where c.rid is not null ;
++--------+-------------------+-----------+
+| roomid | rname             | rloc      |
++--------+-------------------+-----------+
+|    100 | Computer Lab 1    | 1st Floor |
+|    101 | Computer Lab 2    | 1st Floor |
+|    102 | Seminar Hall      | 2nd Floor |
+|    104 | Smart Classroom 2 | 3rd Floor |
++--------+-------------------+-----------+
+
+c. List all rooms which are allocated or not allocated to any courses.
+
+select 
+    r.roomid ,
+    r.rname ,
+    r.rloc ,
+    c.cid ,
+    c.cname 
+from room r 
+left join courses c 
+on r.roomid = c.rid ;
++--------+-------------------+-----------+------+-----------------------------+
+| roomid | rname             | rloc      | cid  | cname                       |
++--------+-------------------+-----------+------+-----------------------------+
+|    100 | Computer Lab 1    | 1st Floor |  201 | Database Management Systems |
+|    101 | Computer Lab 2    | 1st Floor |  202 | Python Programming          |
+|    102 | Seminar Hall      | 2nd Floor |  203 | Computer Networks           |
+|    103 | Smart Classroom 1 | 2nd Floor | NULL | NULL                        |
+|    104 | Smart Classroom 2 | 3rd Floor |  205 | Data Science                |
++--------+-------------------+-----------+------+-----------------------------+
+
+d. List all rooms which are not allocated to any courses.
+
+select r.* 
+from room r 
+left join courses c 
+on r.roomid = c.rid 
+where c.rid is null ;
++--------+-------------------+-----------+
+| roomid | rname             | rloc      |
++--------+-------------------+-----------+
+|    103 | Smart Classroom 1 | 2nd Floor |
++--------+-------------------+-----------+
+
+e. Display courses and faculty assigned to those courses whose special skill is Database.
+
+select 
+    c.cid ,
+    c.cname ,
+    f.fid ,
+    f.fname ,
+    f.skill1 ,
+    f.skill2 
+from courses c 
+join faculty f 
+on c.fid = f.fid 
+where lower(f.skill1) = 'database'
+    or lower(f.skill2) = 'database' ;
++-----+-----------------------------+-----+------------------+----------+--------+
+| cid | cname                       | fid | fname            | skill1   | skill2 |
++-----+-----------------------------+-----+------------------+----------+--------+
+| 201 | Database Management Systems |  10 | Dr. Rahul Sharma | Database | SQL    |
++-----+-----------------------------+-----+------------------+----------+--------+
+
+f. Display time table, it should contain course, faculty and room details.
+
+select 
+    c.cid ,
+    c.cname as course_name ,
+    f.fid ,
+    f.fname as faculty_name ,
+    r.roomid ,
+    r.rname as room_name ,
+    r.rloc as room_loaction 
+from courses c 
+join faculty f 
+on c.fid = f.fid 
+left join room r 
+on c.rid = r.roomid ;
++-----+-----------------------------+-----+-------------------+--------+-------------------+---------------+
+| cid | course_name                 | fid | faculty_name      | roomid | room_name         | room_loaction |
++-----+-----------------------------+-----+-------------------+--------+-------------------+---------------+
+| 201 | Database Management Systems |  10 | Dr. Rahul Sharma  |    100 | Computer Lab 1    | 1st Floor     |
+| 202 | Python Programming          |  11 | Dr. Priya Nair    |    101 | Computer Lab 2    | 1st Floor     |
+| 203 | Computer Networks           |  12 | Prof. Arjun Rao   |    102 | Seminar Hall      | 2nd Floor     |
+| 204 | Web Development             |  13 | Prof. Sneha Patil |   NULL | NULL              | NULL          |
+| 205 | Data Science                |  14 | Dr. Amit Kumar    |    104 | Smart Classroom 2 | 3rd Floor     |
++-----+-----------------------------+-----+-------------------+--------+-------------------+---------------+
+
+65. Create the following table and solve the following queries 
+
+create table shop_category (
+    scid int primary key ,
+    scname varchar(50) not null unique ,
+    description varchar(100) 
+);
+
+insert into shop_category values 
+(1, 'Chips', 'Very crunchy'),
+(2, 'Chocolate', 'Very chocolaty'),
+(3, 'Snacks', 'Yummy'),
+(4, 'Cold Drinks', 'Thanda thanda cool cool');
+
+select * from shop_category ;
++------+-------------+-------------------------+
+| scid | scname      | description             |
++------+-------------+-------------------------+
+|    1 | Chips       | Very crunchy            |
+|    2 | Chocolate   | Very chocolaty          |
+|    3 | Snacks      | Yummy                   |
+|    4 | Cold Drinks | Thanda thanda cool cool |
++------+-------------+-------------------------+
+
+create table shop_salesman ( 
+    ssid int primary key ,
+    ssname varchar(50) not null ,
+    city varchar(50) 
+);
+
+insert into shop_salesman values 
+(11, 'Rahul', 'Pune'),
+(12, 'Kirti', 'Mumbai'),
+(13, 'Prasad', 'Nashik'),
+(14, 'Arnav', 'Amaravati');
+
+select * from shop_salesman ;
++------+--------+-----------+
+| ssid | ssname | city      |
++------+--------+-----------+
+|   11 | Rahul  | Pune      |
+|   12 | Kirti  | Mumbai    |
+|   13 | Prasad | Nashik    |
+|   14 | Arnav  | Amaravati |
++------+--------+-----------+
+
+create table shop_products (
+    sprodid int primary key ,
+    spname varchar(50) not null unique ,
+    sqty int default 20 check (sqty > 0 ) ,
+    sprice decimal(10,2) default 20.00 ,
+    scatid int ,
+    ssid int ,
+    foreign key(scatid) references shop_category(scid) , 
+    foreign key(ssid) references shop_salesman(ssid) 
+);
+
+insert into shop_products values 
+(123, 'Lays', 30, 30.00, 1, 12),
+(111, 'Pepsi', 40, 50.00, 4, 11),
+(134, 'Nachos', 50, 50.00, 1, 12),
+(124, 'Pringles', 40, 60.00, 1, 14),
+(125, 'Dairy Milk', 40, 60.00, 2, 14);
+
+select * from shop_products ;
++---------+------------+------+--------+--------+------+
+| sprodid | spname     | sqty | sprice | scatid | ssid |
++---------+------------+------+--------+--------+------+
+|     111 | Pepsi      |   40 |  50.00 |      4 |   11 |
+|     123 | Lays       |   30 |  30.00 |      1 |   12 |
+|     124 | Pringles   |   40 |  60.00 |      1 |   14 |
+|     125 | Dairy Milk |   40 |  60.00 |      2 |   14 |
+|     134 | Nachos     |   50 |  50.00 |      1 |   12 |
++---------+------------+------+--------+--------+------+
+
+a. List all the products with category chips.
+
+select 
+    p.sprodid , 
+    p.spname ,
+    c.scname 
+from shop_products p
+join shop_category c 
+on p.scatid = c.scid 
+where c.scname = 'chips' ;
++---------+----------+--------+
+| sprodid | spname   | scname |
++---------+----------+--------+
+|     123 | Lays     | Chips  |
+|     124 | Pringles | Chips  |
+|     134 | Nachos   | Chips  |
++---------+----------+--------+
+
+b. Display all the products sold by Kirti.
+
+select 
+    p.sprodid , 
+    p.spname ,
+    s.ssname 
+from shop_products p
+join shop_salesman s 
+on p.ssid = s.ssid 
+where s.ssname = 'kirti' ;
++---------+--------+--------+
+| sprodid | spname | ssname |
++---------+--------+--------+
+|     123 | Lays   | Kirti  |
+|     134 | Nachos | Kirti  |
++---------+--------+--------+
+
+c. Display all the salesman who did not sold any product.
+
+select 
+    s.ssid ,
+    s.ssname ,
+    s.city 
+from shop_salesman s
+left join shop_products p 
+on s.ssid = p.ssid 
+where p.ssid is null ;
++------+--------+--------+
+| ssid | ssname | city   |
++------+--------+--------+
+|   13 | Prasad | Nashik |
++------+--------+--------+
+
+d. Display all the category for which no product is there.
+
+select 
+    c.scid ,
+    c.scname ,
+    c.description 
+from shop_category c 
+left join shop_products p
+on c.scid = p.scatid 
+where p.scatid is null ;
++------+--------+-------------+
+| scid | scname | description |
++------+--------+-------------+
+|    3 | Snacks | Yummy       |
++------+--------+-------------+
+
+e. Display all the products with no category assigned.
+
+select 
+    p.sprodid,
+    p.spname,
+    p.sqty,
+    p.sprice
+from shop_products p
+left join shop_category c 
+on  p.scatid = c.scid 
+where p.scatid is null ;
+Empty set
+
+f. List all the salesman who stays in city with name starts with P or N.
+
+select * 
+from 
+shop_salesman 
+where city like 'p%' or city like 'n%' ;
++------+--------+--------+
+| ssid | ssname | city   |
++------+--------+--------+
+|   11 | Rahul  | Pune   |
+|   13 | Prasad | Nashik |
++------+--------+--------+
+
+g. Add new coloumn in salesman table by name credit limit. 
+
+alter table shop_salesman 
+add credit_limit decimal(10,2) ;
+
+desc shop_salesman ;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| ssid         | int           | NO   | PRI | NULL    |       |
+| ssname       | varchar(50)   | NO   |     | NULL    |       |
+| city         | varchar(50)   | YES  |     | NULL    |       |
+| credit_limit | decimal(10,2) | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
